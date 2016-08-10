@@ -1,0 +1,10 @@
+# License
+
+See COPYING for license information.
+
+# Overview
+
+This suite contains a number of programs, which act as examples to understand
+the usage of new OpenSHMEM features which are under discussion. The OpenSHMEM
+routines used in these programs are shmemx_ prefixed, since these routines
+not part of the OpenSHMEM standards.
