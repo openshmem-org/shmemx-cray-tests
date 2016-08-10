@@ -36,3 +36,6 @@ in the Cray SHMEM implementation.
 # Example Build and Runs
 
 ---
+
+# Contributors
+<img src="image/cray_logo.png" width="200">
