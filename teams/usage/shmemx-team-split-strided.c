@@ -57,9 +57,8 @@
  *        PEs, that is created from the PE triplet provided.
  *
  * EXAMPLE DETAILS:
- * The following example program creates a team based on the strided triplet
- * value. The strided triplet values create team based on all the PEs in the
- * SHMEM_TEAM_WORLD, which have even ranks.
+ * The example program creates a team based on the strided triplet
+ * value with all the even ranked PEs.
  */
 #include <stdio.h>
 #include <shmem.h>
@@ -74,17 +73,8 @@ int main(int argc, char *argv[]) {
     rank = shmem_my_pe();
     npes = shmem_n_pes();
 
-    if (npes <= 20) {
-        if (rank == 0) {
-            printf("Minumum 20 PEs are required for this example program\n");
-            shmem_global_exit(1);
-        }
-    }
-
-    shmem_barrier_all();
-
-    /* create a team from the first 10 even ranks in the SHMEM_TEAM_WORLD */
-    shmemx_team_split_strided(SHMEM_TEAM_WORLD, 0, 2, 10, &team1_from_team_world);
+    /* create a team of all even ranked PEs from SHMEM_TEAM_WORLD */
+    shmemx_team_split_strided(SHMEM_TEAM_WORLD, 0, 2, npes/2, &team1_from_team_world);
     
     if (team1_from_team_world != SHMEM_TEAM_NULL) {
         /* 
