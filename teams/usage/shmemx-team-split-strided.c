@@ -66,22 +66,22 @@
 
 int main(int argc, char *argv[]) {
     int rank, npes;
-    shmem_team_t team1_from_team_world;
-    shmem_team_t team2_from_team1;
+    int t_pe, t_size;
+    shmem_team_t new_team;
 
     shmem_init();
     rank = shmem_my_pe();
     npes = shmem_n_pes();
 
     /* create a team of all even ranked PEs from SHMEM_TEAM_WORLD */
-    shmemx_team_split_strided(SHMEM_TEAM_WORLD, 0, 2, npes/2, &team1_from_team_world);
+    shmemx_team_split_strided(SHMEM_TEAM_WORLD, 0, 2, npes/2, &new_team);
     
-    if (team1_from_team_world != SHMEM_TEAM_NULL) {
-        /* 
-         * only the PEs which are part of the new team can pass this check, all
-         * other PEs should have SHMEM_TEAM_NULL in the team handle
-         */
-        printf("PE: %d Hello from team1_from_team_world\n", rank);
+    if (new_team != SHMEM_TEAM_NULL) {
+        t_size = shmem_team_n_pes(new_team);
+        t_pe   = shmem_team_my_pe(new_team);
+
+        printf("Global PE %d has team_pe of %d out of %d\n", 
+                rank, t_pe, t_size);
     }
 
     shmem_barrier_all();
