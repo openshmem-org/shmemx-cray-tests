@@ -77,8 +77,8 @@ int main(int argc, char *argv[]) {
     shmemx_team_split_strided(SHMEM_TEAM_WORLD, 0, 2, npes/2, &new_team);
     
     if (new_team != SHMEM_TEAM_NULL) {
-        t_size = shmemx_team_npes(new_team);
-        t_pe   = shmemx_team_mype(new_team);
+        t_size = shmemx_team_n_pes(new_team);
+        t_pe   = shmemx_team_my_pe(new_team);
 
         printf("Global PE %d has team_pe of %d out of %d\n", 
                 rank, t_pe, t_size);

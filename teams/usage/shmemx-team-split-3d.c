@@ -93,24 +93,24 @@ int main(int argc, char *argv[]) {
                          &zaxis_team);
 
     if (xaxis_team != SHMEM_TEAM_NULL) {
-        t_size = shmemx_team_npes(xaxis_team);
-        t_pe   = shmemx_team_mype(xaxis_team);
+        t_size = shmemx_team_n_pes(xaxis_team);
+        t_pe   = shmemx_team_my_pe(xaxis_team);
 
         printf("Global PE %d has team_pe of %d out of %d in xaxis_team\n", 
                 rank, t_pe, t_size);
     }
 
     if (yaxis_team != SHMEM_TEAM_NULL) {
-        t_size = shmemx_team_npes(yaxis_team);
-        t_pe   = shmemx_team_mype(yaxis_team);
+        t_size = shmemx_team_n_pes(yaxis_team);
+        t_pe   = shmemx_team_my_pe(yaxis_team);
 
         printf("Global PE %d has team_pe of %d out of %d in yaxis_team\n", 
                 rank, t_pe, t_size);
     }
 
     if (zaxis_team != SHMEM_TEAM_NULL) {
-        t_size = shmemx_team_npes(zaxis_team);
-        t_pe   = shmemx_team_mype(zaxis_team);
+        t_size = shmemx_team_n_pes(zaxis_team);
+        t_pe   = shmemx_team_my_pe(zaxis_team);
 
         printf("Global PE %d has team_pe of %d out of %d in zaxis_team\n", 
                 rank, t_pe, t_size);
