@@ -7,6 +7,7 @@
  *                                  int key,
  *                                  shmem_team_t *new_team  )
  *
+ * DESCRIPTION:
  * The shmem_team_split_color routine is a collective routine. It
  * partitions an existing parent team into disjoint subgroups, one
  * for each value of color. Each subgroup contains all PEs of the same
@@ -76,8 +77,8 @@ int main(int argc, char *argv[]) {
     shmemx_team_split_color(SHMEM_TEAM_WORLD, color, key, &new_team);
     
     if (new_team != SHMEM_TEAM_NULL) {
-        t_size = shmemx_team_n_pes(new_team);
-        t_pe   = shmemx_team_my_pe(new_team);
+        t_size = shmemx_team_npes(new_team);
+        t_pe   = shmemx_team_mype(new_team);
 
         printf("Global PE %d has team_pe of %d out of %d\n", 
                 rank, t_pe, t_size);
