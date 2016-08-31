@@ -1,9 +1,9 @@
 /*
- * Example program to show the usage of shmemx_team_<datatype>_xor_to_all
+ * Example program to show the usage of shmemx_team_<datatype>_or_to_all
  * routine
  *
  * SYNOPSIS:
- * void shmemx_team_<datatype>_xor_to_all(    shmem_team_t team,
+ * void shmemx_team_<datatype>_or_to_all(    shmem_team_t team,
  *                                              <datatype>  *dest,
  *                                              <datatype>  *source,
  *                                              int          nreduce,
@@ -13,7 +13,7 @@
  * where <datatype> is one from short, int, long, and longlong
  *
  * DESCRIPTION:
- * The shmemx_team_<datatype>_xor_to_all is a collective routine which 
+ * The shmemx_team_<datatype>_or_to_all is a collective routine which 
  * compute one or more reductions across symmetric arrays on multiple 
  * virtual PEs. A reduction performs an associative binary operation across
  * a set of values. Each of these routines asandes that only PEs which are
@@ -29,7 +29,7 @@
  * The source and target arrays may be the same array, but they may not be 
  * overlapping arrays.
  *
- * The shmemx_team_<datatype>_xor_to_all supports the following options:
+ * The shmemx_team_<datatype>_or_to_all supports the following options:
  * team     
  *              A valid PE team. A predefined team constant or any team 
  *              created by a split team routine may be used
@@ -82,7 +82,7 @@
  *    ·  The target array is updated.
  *
  * EXAMPLE DETAILS:
- * The example program shows shmemx_team_int_xor_to_all routine used to 
+ * The example program shows shmemx_team_int_or_to_all routine used to 
  * perform collective reduction operation across all the PEs in the
  * SHMEM_TEAM_WORLD team. SHMEM_TEAM_WORLD is a predefined team which
  * includes all PEs
@@ -114,11 +114,11 @@ int main(int argc, char *argv[]) {
     }
 
     for (i = 0; i < N; i++) {
-        source[i] = me % 2;
+        source[i] = (me+1)%4;
     }
 
     shmem_barrier_all();
-    shmemx_team_int_xor_to_all(SHMEM_TEAM_WORLD, dest, source, N, 
+    shmemx_team_int_or_to_all(SHMEM_TEAM_WORLD, dest, source, N, 
                                pWrk, pSync);
 
     for (i = 0; i < N; i++) {
