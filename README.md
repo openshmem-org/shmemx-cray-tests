@@ -2,14 +2,10 @@
 
 # License
 
----
-
 See COPYING for license information.
 
 
 # Overview
-
----
 
 This suite contains a number of programs, which act as examples to understand
 the usage of new OpenSHMEM features which are under discussion for being added
@@ -24,19 +20,17 @@ implementation.
 
 # SHMEMX Features
 
----
+The following SHMEMX features are available:  
+OpenSHMEM TEAMS  
 
 # Build Instructions
 
----
 
 # Running Tests
 
----
 
 # Example Build and Runs
 
----
 
 # Contributors
 <img src="image/cray_logo.png" width="200">
